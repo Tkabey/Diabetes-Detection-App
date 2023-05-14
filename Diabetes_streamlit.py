@@ -8,92 +8,83 @@ import pip
 pip.main(["install","streamlit"])
 
 
-# In[29]:
+# In[32]:
 
 
 import streamlit as st
 from PIL import Image
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
 
 
-# In[5]:
+# In[3]:
 
 
 st.header("Diabetes Detection App")
 
 
-# In[6]:
+# In[4]:
 
 
-image=Image.open("C:\\Users\\tkabe\\myprojects\\Diabetes\\diab.png")
+image=Image.open("C:\\Users\\tkabe\\myprojects\\Diabetes\\Diabetes-Detection-App\\diab.png")
 
 
-# In[7]:
+# In[5]:
 
 
 st.image(image)
 
 
-# In[52]:
+# In[6]:
 
 
 data=pd.read_csv("C:\\Users\\tkabe\\myprojects\\Diabetes\\Diabetes-Detection-App\\diabetes.csv")
 data.head()
 
 
-# In[9]:
+# In[7]:
 
 
 st.subheader("Data")
 
 
-# In[10]:
+# In[8]:
 
 
 st.dataframe(data)
 
 
-# In[11]:
+# In[9]:
 
 
 st.subheader("Data Description")
 
 
-# In[12]:
+# In[10]:
 
 
 st.write(data.iloc[:,:8].describe())
 
 
-# In[13]:
+# In[11]:
 
 
 data.isnull().sum()
 
 
-# In[15]:
+# In[12]:
 
 
 data.duplicated().sum()
 
 
-# In[22]:
+# In[13]:
 
 
 data["Outcome"].value_counts()
 
 
-# In[30]:
-
-
-sns.countplot(data["Outcome"])
-plt.show()
-
-
-# In[50]:
+# In[15]:
 
 
 data.corr()
@@ -111,69 +102,69 @@ data.corr()
 
 
 
-# In[31]:
+# In[16]:
 
 
 x=data.iloc[:,:8]
 y=data.iloc[:,8]
 
 
-# In[32]:
+# In[17]:
 
 
 from sklearn.model_selection import train_test_split
 
 
-# In[33]:
+# In[18]:
 
 
 x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=0)
 
 
-# In[34]:
+# In[19]:
 
 
 from sklearn.ensemble import RandomForestClassifier
 
 
-# In[35]:
+# In[20]:
 
 
 model=RandomForestClassifier(n_estimators=500)
 model.fit(x_train,y_train)
 
 
-# In[36]:
+# In[21]:
 
 
 from sklearn.metrics import accuracy_score
 
 
-# In[37]:
+# In[22]:
 
 
 y_pred=model.predict(x_test)
 
 
-# In[39]:
+# In[23]:
 
 
 st.subheader("Accuracy of trained model")
 
 
-# In[40]:
+# In[24]:
 
 
 st.write(accuracy_score(y_test,y_pred))
 
 
-# In[41]:
+# In[25]:
 
 
 st.subheader("Enter your details")
 
 
-# In[42]:
+# In[26]:
 
 
 def user_inputs():
@@ -197,31 +188,31 @@ def user_inputs():
     return pd.DataFrame(input_dict,index=[0])
 
 
-# In[43]:
+# In[27]:
 
 
 ui=user_inputs()
 
 
-# In[44]:
+# In[28]:
 
 
 st.subheader("Entered Input Data")
 
 
-# In[45]:
+# In[29]:
 
 
 st.write(ui)
 
 
-# In[47]:
+# In[30]:
 
 
 st.subheader("Predictions (0 - Non Diabetes, 1 - Diabetes)")
 
 
-# In[48]:
+# In[31]:
 
 
 st.write(model.predict(ui))
