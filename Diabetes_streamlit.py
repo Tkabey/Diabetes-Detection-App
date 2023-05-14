@@ -37,10 +37,10 @@ image=Image.open("C:\\Users\\tkabe\\myprojects\\Diabetes\\diab.png")
 st.image(image)
 
 
-# In[8]:
+# In[52]:
 
 
-data=pd.read_csv("C:\\Users\\tkabe\\myprojects\\Diabetes\\diabetes.csv")
+data=pd.read_csv("C:\\Users\\tkabe\\myprojects\\Diabetes\\Diabetes-Detection-App\\diabetes.csv")
 data.head()
 
 
@@ -68,18 +68,6 @@ st.subheader("Data Description")
 st.write(data.iloc[:,:8].describe())
 
 
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
 # In[13]:
 
 
@@ -90,12 +78,6 @@ data.isnull().sum()
 
 
 data.duplicated().sum()
-
-
-# In[17]:
-
-
-data.head(2)
 
 
 # In[22]:
@@ -109,6 +91,24 @@ data["Outcome"].value_counts()
 
 sns.countplot(data["Outcome"])
 plt.show()
+
+
+# In[50]:
+
+
+data.corr()
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
 
 
 # In[31]:
@@ -213,12 +213,6 @@ st.subheader("Entered Input Data")
 
 
 st.write(ui)
-
-
-# In[46]:
-
-
-data.corr()
 
 
 # In[47]:
